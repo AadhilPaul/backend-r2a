@@ -6,7 +6,7 @@ const axios = require("axios");
 
 // Load service account credentials
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.SERVICE_ACCOUNT_JSON), // ✅ Load from env variable
+  credentials: JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString()),
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
