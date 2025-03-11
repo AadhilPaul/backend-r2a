@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { getQuizQuestions, submitResponse, getFinalScore} = require("./sheets"); // Import functions
@@ -6,7 +5,7 @@ const { getQuizQuestions, submitResponse, getFinalScore} = require("./sheets"); 
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({origin: "*"}));
 app.use(express.json()); // Middleware for JSON parsing
 
 const finalScores = {};

@@ -1,12 +1,11 @@
-require("dotenv").config();
-
+require("dotenv").config()
 const { google } = require("googleapis");
 const path = require("path");
 const axios = require("axios");
 
 // Load service account credentials
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString()),
+  credentials: JSON.parse(process.env.SERVICE_ACCOUNT_JSON), // ✅ Load from env variable
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
