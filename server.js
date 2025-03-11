@@ -5,16 +5,20 @@ const { getQuizQuestions, submitResponse, getFinalScore} = require("./sheets"); 
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
-app.use(express.json()); // Middleware for JSON parsing
-// 
-// Manually set CORS headers (backup method)
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
   next();
 });
+
+app.use(express.json());
 
 const finalScores = {};
 
